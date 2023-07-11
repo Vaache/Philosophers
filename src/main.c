@@ -66,9 +66,10 @@ int	main(int ac, char **av)
 	get_time();
 	if (ac == 5 || ac == 6)
 	{
+		if (check_valid_av(av) != 0)
+			return (0);
 		str = check_args(av);
-		if (check_valid_av(av) != 0 || check_valid(str) != 0 || \
-			check_numeric(str) != 0)
+		if (check_valid(str) != 0 || check_numeric(str) != 0)
 			return (0);
 		if (main_init(&main, str) == 1)
 			return (1);
