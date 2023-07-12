@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:35:09 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/08 11:46:39 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/12 22:06:23 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,41 +20,36 @@
 # include <sys/time.h>
 # include <semaphore.h>
 
-# define SEM_WAIT		"Semaphore Wait"
-# define SEM_DIE		"Semaphore Die"
-# define SEM_FORK		"Semaphore Fork"
-# define SEM_LAST_EAT	"Semaphore Last Eat"
-# define SEM_WRITE		"Semaphore Write"
+# define SEM_WAIT		"/sem_wait"
+# define SEM_DIE		"/sem_die"
+# define SEM_FORK		"/sem_fork"
+# define SEM_WRITE		"/sem_write"
+# define SEM_LAST_EAT	"/sem_last_eat"
+# define SEM_EACH_EAT	"/sem_each_eat"
 
 typedef void	*(*t_phtread_help)(void *);
 
 typedef struct s_philo
 {
-	int				id;
+	pid_t			id;
 	int				last_eat;
 	int				time_eat;
 	int				time_sleep;
 	int				count_must_eat;
-	int				*die;
 	pthread_t		philo;
-	pthread_mutex_t	mutex_eat;
-	pthread_mutex_t	mutex_last_eat;
-	pthread_mutex_t	*mutex_write;
-	pthread_mutex_t	*mutex_left;
-	pthread_mutex_t	*mutex_right;
-	pthread_mutex_t	*mutex_die;
+	sem_t			*sem_each_eat;
+	sem_t			*sem_die;
+	sem_t			*sem_fork;
+	sem_t			*sem_write;
+	sem_t			*sem_last_eat;
 }	t_philo;
 
 typedef struct s_main
 {
-	int				die;
 	int				max_eat;
 	int				time_die;
 	int				count_philos;
 	t_philo			*philos;
-	pthread_mutex_t	*fork;
-	pthread_mutex_t	mutex_write;
-	pthread_mutex_t	mutex_die;
 }	t_main;
 
 char			*ft_strjoin(char *s1, char *s2);
@@ -66,17 +61,10 @@ void			ft_free(char **str);
 char			**check_args(char **av);
 int				check_numeric(char **str);
 
-int				main_init(t_main *main, char **str);
-void			t_info_init(t_main *main, char **str);
-void			forks_init(t_main *main);
 long long int	get_time(void);
 void			my_usleep(unsigned long sleep, t_philo *philo);
 
-void			*philo_action(t_philo	*philo);
-int				check_die_philo(t_main *main);
-void			creat_pthread(t_main *main);
-int				is_die(t_philo *philo);
-void			exit_prog(t_main *main);
-int				eat_die_check(t_main *main);
-
+void	main_init(t_main *main, char **str);
+void	semaphores_init(t_philo *philo,  int count_philo);
+void	philo_init(t_philo *philo, char **str, int count_philo);
 #endif
