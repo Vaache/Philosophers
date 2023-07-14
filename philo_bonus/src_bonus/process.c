@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:04:06 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/14 15:07:29 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:10:38 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	forks(t_main *main, int i)
 	philo = &main->philos[i];
 	merg.main = main;
 	merg.philo = philo;
-	pthread_create(&philo->philo, NULL, (t_phtread_help)check_die, &merg);
-	if (main->philos[i].id % 2 == 0)
+	pthread_create(&philo->philo, NULL, (t_phtread_help)(&check_die), &merg);
+	if (philo->id % 2 == 0)
 		usleep(1000);
 	while (1)
 	{
@@ -78,33 +78,21 @@ void	forks(t_main *main, int i)
 			break ;
 		}
 		sem_post(philo->sem_each_eat);
-		printf("[%d] : [%lld] %s\n", i + 1, get_time(), "Is Selaping");
-		sem_post(philo->sem_write);
+		my_print(philo, "Is Selaping");
 		my_usleep(philo->time_sleep);
-		sem_wait(philo->sem_write);
-		printf("[%d] : [%lld] %s\n", i + 1, get_time(), "Is Thinking");
-		sem_post(philo->sem_write);
+		my_print(philo, "Is Thinking");
 	}
 	pthread_join(philo->philo, NULL);
-	exit(1);
+	exit(EXIT_SUCCESS);
 }
 
 void	forks2(t_philo *philo)
 {
 	sem_wait(philo->sem_fork);
-	sem_wait(philo->sem_write);
-	printf("[%d] : [%lld] %s\n", philo->id + 1, get_time(), \
-		"Has Take A Right Fork");
-	sem_post(philo->sem_write);
+	my_print(philo, "Has Take A Right Fork");
 	sem_wait(philo->sem_fork);
-	sem_wait(philo->sem_write);
-	printf("[%d] : [%lld] %s\n", philo->id + 1, get_time(), \
-		"Has Take A Left Fork");
-	sem_post(philo->sem_write);
-	sem_wait(philo->sem_write);
-	printf("[%d] : [%lld] %s\n", philo->id + 1, get_time(), \
-		"Is Eating");
-	sem_post(philo->sem_write);
+	my_print(philo, "Has Take A Left Fork");
+	my_print(philo, "Is Eating");
 	sem_wait(philo->sem_last_eat);
 	philo->last_eat = get_time();
 	sem_post(philo->sem_last_eat);
@@ -114,7 +102,6 @@ void	forks2(t_philo *philo)
 	sem_post(philo->sem_each_eat);
 	sem_post(philo->sem_fork);
 	sem_post(philo->sem_fork);
-	sem_wait(philo->sem_write);
 	sem_wait(philo->sem_each_eat);
 }
 
@@ -126,7 +113,6 @@ void	creat_process(t_main *main)
 	while (i < main->count_philos)
 	{
 		main->philos[i].pid = fork();
-		main->philos[i].id = i;
 		if (main->philos[i].pid < 0)
 		{
 			perror("fork ");

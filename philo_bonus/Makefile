@@ -11,7 +11,7 @@ OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 CC		= cc
 HEADER	= $(wildcard includes/*.h)
 INCLUDE	= -Iincludes
-CFLAGS	= -Wall -Wextra -Werror $(INCLUDE)  #-g3 -fsanitize=thread
+CFLAGS	= -Wall -Wextra -Werror $(INCLUDE)
 MK		= mkdir -p
 
 all: $(OBJ_DIR) $(NAME)

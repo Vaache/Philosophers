@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:35:09 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/14 15:12:54 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:13:36 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <semaphore.h>
-# include <sys/wait.h>
 # include <signal.h>
-# include <sys/types.h>
 
 # define SEM_FORK		"/sem_fork"
 # define SEM_WRITE		"/sem_write"
@@ -65,6 +63,7 @@ long long int	ft_atoi(const char *str);
 size_t			ft_strlen(const char *str);
 char			*ft_strjoin(char *s1, char *s2);
 char			**ft_split(const char *s, char c);
+void			my_print(t_philo *philo, char *str);
 
 char			**check_args(char **av);
 int				check_numeric(char **str);

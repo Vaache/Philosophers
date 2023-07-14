@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 13:05:21 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/13 22:04:56 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:04:37 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@ size_t	ft_strlen(const char *str)
 	while (str && str[i])
 		i++;
 	return (i);
-}
-
-void	ft_free(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i])
-		free(str[i++]);
-	free(str);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -79,4 +69,11 @@ void	my_usleep(unsigned long sleep)
 	value = get_time();
 	while (get_time() - value <= sleep)
 		usleep(50);
+}
+
+void	my_print(t_philo *philo, char *str)
+{
+	sem_wait(philo->sem_write);
+	printf("[%d] : [%lld] %s\n", philo->id + 1, get_time(), str);
+	sem_post(philo->sem_write);
 }

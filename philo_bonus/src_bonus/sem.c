@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 20:35:57 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/14 14:43:01 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:10:44 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	main_init(t_main *main, char **str)
 	i = 0;
 	main->count_philos = ft_atoi(str[0]);
 	main->time_die = ft_atoi(str[1]);
-	if (ft_atoi(str[4]))
+	if (str[4])
 		main->max_eat = ft_atoi(str[4]);
 	else
 		main->max_eat = -1;
@@ -29,6 +29,7 @@ void	main_init(t_main *main, char **str)
 	while (i < main->count_philos)
 	{
 		main->philos[i] = philo;
+		main->philos[i].id = i;
 		i++;
 	}
 }
