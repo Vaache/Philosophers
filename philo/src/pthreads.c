@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 21:32:18 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/07 21:41:51 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:55:43 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	creat_pthread(t_main *main)
 	while (i < main->count_philos)
 	{
 		pthread_create(&(main->philos[i].philo), NULL, \
-			(void *)&philo_action, (t_phtread_help)(&main->philos[i]));
+			(t_phtread_help)philo_action, &main->philos[i]);
 		i++;
 	}
 	while (1)

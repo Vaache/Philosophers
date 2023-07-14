@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 13:13:51 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/05 16:20:48 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:30:24 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int	check_numeric(char **str)
 	{
 		j = 0;
 		if (ft_strlen(str[i]) > 10)
-			return (write(2, "Error : Larger Lenght Numeric", 30));
+			panic("Error : Larger Lenght Numeric");
 		if (ft_atoi(str[i]) > 2147483647)
-			return (write(2, "Error : Larger Maximum Integer\n", 32));
+			panic("Error : Larger Maximum Integer\n");
 		i++;
 	}
 	i = 0;
 	while (str && str[i])
 		i++;
 	if (i < 4 || i > 5)
-		return (write(2, "Error : Quantity Arguments\n", 28));
+		panic("Error : Quantity Arguments\n");
 	return (0);
 }

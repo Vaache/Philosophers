@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 13:05:21 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/06 22:49:30 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/13 22:04:56 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,11 @@ long long int	get_time(void)
 	return ((time.tv_usec / 1000) + (time.tv_sec * 1000) - start);
 }
 
-// void	my_usleep(unsigned long sleep, t_philo *philo)
-// {
-// 	unsigned long	value;
+void	my_usleep(unsigned long sleep)
+{
+	unsigned long	value;
 
-// 	value = get_time();
-// 	while (!is_die(philo))
-// 	{
-// 		if (get_time() - value <= sleep)
-// 			usleep(50);
-// 		else
-// 			break ;
-// 	}
-// }
+	value = get_time();
+	while (get_time() - value <= sleep)
+		usleep(50);
+}

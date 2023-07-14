@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:34:52 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/12 21:29:21 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:43:43 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int ac, char **av)
 	char	**str;
 	t_main	main;
 
-	// get_time();
+	get_time();
 	if (ac == 5 || ac == 6)
 	{
 		if (check_valid_av(av) != 0)
@@ -72,6 +72,8 @@ int	main(int ac, char **av)
 		if (check_valid(str) != 0 || check_numeric(str) != 0)
 			return (0);
 		main_init(&main, str);
+		creat_process(&main);
+		semaphores_close(&main);
 	}
 	else
 	{
