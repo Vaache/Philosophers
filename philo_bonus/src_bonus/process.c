@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:04:06 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/14 14:40:46 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:07:29 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	*check_die(t_merg *merg)
 			printf("[%d] : [%lld] %s\n", merg->philo->id + 1, \
 				get_time(), "Is Death");
 			sem_post(merg->philo->sem_last_eat);
-			sem_post(merg->philo->sem_write);
 			exit(EXIT_FAILURE);
 		}
 		sem_post(merg->philo->sem_last_eat);
@@ -106,6 +105,7 @@ void	forks2(t_philo *philo)
 	printf("[%d] : [%lld] %s\n", philo->id + 1, get_time(), \
 		"Is Eating");
 	sem_post(philo->sem_write);
+	sem_wait(philo->sem_last_eat);
 	philo->last_eat = get_time();
 	sem_post(philo->sem_last_eat);
 	my_usleep(philo->time_eat);

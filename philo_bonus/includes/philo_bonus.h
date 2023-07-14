@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:35:09 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/14 13:57:08 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:12:54 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ typedef struct s_merg
 	t_philo	*philo;
 }	t_merg;
 
+void			panic(char *str);
+void			ft_free(char **str);
+long long int	ft_atoi(const char *str);
+size_t			ft_strlen(const char *str);
 char			*ft_strjoin(char *s1, char *s2);
 char			**ft_split(const char *s, char c);
-size_t			ft_strlen(const char *str);
-long long int	ft_atoi(const char *str);
-void			ft_free(char **str);
-void			panic(char *str);
 
 char			**check_args(char **av);
 int				check_numeric(char **str);
@@ -73,8 +73,8 @@ long long int	get_time(void);
 void			my_usleep(unsigned long sleep);
 
 void			main_init(t_main *main, char **str);
-void			semaphores_init(t_philo *philo, int count_philo);
 void			philo_init(t_philo *philo, char **str, int count_philo);
+void			semaphores_init(t_philo *philo, int count_philo);
 void			semaphores_close(t_main *main);
 
 void			creat_process(t_main *main);
