@@ -47,7 +47,7 @@ void	*philo_action(t_philo	*philo)
 	return (NULL);
 }
 
-void	creat_pthread(t_main *main)
+void	create_pthread(t_main *main)
 {
 	int	i;
 
