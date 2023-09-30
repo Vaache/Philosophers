@@ -6,7 +6,7 @@
 /*   By: vhovhann <vhovhann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:34:52 by vhovhann          #+#    #+#             */
-/*   Updated: 2023/07/06 22:22:54 by vhovhann         ###   ########.fr       */
+/*   Updated: 2023/09/30 12:48:35 by vhovhann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int ac, char **av)
 			return (1);
 		t_info_init(&main, str);
 		forks_init(&main);
-		creat_pthread(&main);
+		create_pthread(&main);
 		exit_prog(&main);
 	}
 	else
