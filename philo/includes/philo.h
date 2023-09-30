@@ -67,7 +67,7 @@ void			my_usleep(unsigned long sleep, t_philo *philo);
 
 void			*philo_action(t_philo	*philo);
 int				check_die_philo(t_main *main);
-void			creat_pthread(t_main *main);
+void			create_pthread(t_main *main);
 int				is_die(t_philo *philo);
 void			exit_prog(t_main *main);
 int				eat_die_check(t_main *main);
