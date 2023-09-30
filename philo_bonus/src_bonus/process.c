@@ -78,7 +78,7 @@ void	forks(t_main *main, int i)
 			break ;
 		}
 		sem_post(philo->sem_each_eat);
-		my_print(philo, "Is Selaping");
+		my_print(philo, "Is Sleeping");
 		my_usleep(philo->time_sleep);
 		my_print(philo, "Is Thinking");
 	}
